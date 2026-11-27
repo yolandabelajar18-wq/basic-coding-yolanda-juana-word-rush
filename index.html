@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordRush — Game Kata & Refleks (Level 1–100)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <div class="brand">
+                <span class="creator-pill">🌸 Karya Yolanda Suchesi &amp; Juana Taruli</span>
+                <h1>✨ WordRush</h1>
+            </div>
+            <div class="header-right">
+                <button id="soundToggle" class="sound-btn" title="Suara Aktif/Nonaktif">🔊</button>
+                <div class="high-score-box">
+                    <span class="label">Rekor</span>
+                    <strong id="highScore">0</strong>
+                </div>
+            </div>
+        </header>
+
+        <!-- Duo Maskot Animasi Yolanda & Juana -->
+        <div id="duoMascot" class="duo-stage">
+            <div class="sparkles-layer" aria-hidden="true">
+                <span class="sparkle s1">✦</span>
+                <span class="sparkle s2">✧</span>
+                <span class="sparkle s3">✦</span>
+            </div>
+            <div id="speechBubble" class="speech-bubble">Halo! Siap main bareng kami? ✨</div>
+            <div class="characters-row">
+                <!-- Karakter 1: Yolanda (Rambut panjang sepinggang + curly di ujung, outfit Baby Blue & Cream) -->
+                <div class="char-card char-left">
+                    <svg class="chibi-svg tall-girl" viewBox="0 0 120 158" xmlns="http://www.w3.org/2000/svg">
+                        <g class="yolanda-body">
+                            <g class="yolanda-hair">
+                                <path d="M32 42 C27 68, 28 94, 30 112 C25 116, 34 121, 38 116 C43 121, 54 121, 58 116 C62 121, 73 121, 78 116 C82 121, 91 116, 86 112 C88 94, 89 68, 84 42 Z" fill="#6b4c59"/>
+                            </g>
+                            <rect x="54.5" y="64" width="11" height="11" rx="5" fill="#f7dfd2"/>
+                            <circle cx="60" cy="46" r="23.5" fill="#f7dfd2"/>
+                            <path d="M36.5 45 C36.5 25, 83.5 25, 83.5 45 C74 34, 46 34, 36.5 45 Z" fill="#6b4c59"/>
+                            <!-- Pita Baby Blue & Cream -->
+                            <polygon points="37,25 46,30 37,35" fill="#9bc0db"/>
+                            <polygon points="53,25 44,30 53,35" fill="#9bc0db"/>
+                            <circle cx="45" cy="30" r="3.2" fill="#fbf4ec"/>
+                            <g class="eyes-yolanda">
+                                <circle cx="50.5" cy="48" r="3.2" fill="#47303c"/>
+                                <circle cx="69.5" cy="48" r="3.2" fill="#47303c"/>
+                                <circle cx="51.6" cy="46.9" r="1.1" fill="#ffffff"/>
+                                <circle cx="70.6" cy="46.9" r="1.1" fill="#ffffff"/>
+                            </g>
+                            <ellipse cx="44" cy="54" rx="3.8" ry="2" fill="#f2b5c4"/>
+                            <ellipse cx="76" cy="54" rx="3.8" ry="2" fill="#f2b5c4"/>
+                            <path d="M55.5 56 Q60 60.5 64.5 56" stroke="#9e536b" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+                            <!-- Outfit Yolanda: Baby Blue Cardigan + Cream Inner & Rok Cream -->
+                            <path d="M47.5 75 L72.5 75 L74.5 104 L45.5 104 Z" fill="#c7e0f2" stroke="#9ec3de" stroke-width="1"/>
+                            <path d="M55 75 L60 88 L65 75 Z" fill="#fbf3ea"/>
+                            <line x1="60" y1="88" x2="60" y2="103" stroke="#7fa6c4" stroke-width="1.4"/>
+                            <path d="M45 104 L75 104 L80 128 L40 128 Z" fill="#f7ece1" stroke="#dfd0c0" stroke-width="1"/>
+                            <line x1="52" y1="104" x2="49" y2="128" stroke="#dfd0c0" stroke-width="1.2"/>
+                            <line x1="60" y1="104" x2="60" y2="128" stroke="#dfd0c0" stroke-width="1.2"/>
+                            <line x1="68" y1="104" x2="71" y2="128" stroke="#dfd0c0" stroke-width="1.2"/>
+
+                            <path class="arm-left" d="M47.5 78 L35 97" stroke="#c7e0f2" stroke-width="6.5" stroke-linecap="round"/>
+                            <path class="arm-right" d="M72.5 78 L85 95" stroke="#c7e0f2" stroke-width="6.5" stroke-linecap="round"/>
+                            <circle cx="34.5" cy="98" r="3.2" fill="#f7dfd2"/>
+                            <circle cx="85.5" cy="96" r="3.2" fill="#f7dfd2"/>
+
+                            <line x1="52" y1="128" x2="50" y2="148" stroke="#f7dfd2" stroke-width="5.5" stroke-linecap="round"/>
+                            <line x1="68" y1="128" x2="70" y2="148" stroke="#f7dfd2" stroke-width="5.5" stroke-linecap="round"/>
+                            <ellipse cx="49" cy="150" rx="6.2" ry="3" fill="#7fa6c4"/>
+                            <ellipse cx="71" cy="150" rx="6.2" ry="3" fill="#7fa6c4"/>
+                        </g>
+                    </svg>
+                    <span class="char-name">Yolanda</span>
+                </div>
+
+                <div class="duo-heart">🤍</div>
+
+                <!-- Karakter 2: Juana (Rambut lurus panjang sedikit lebih pendek dari Yolanda, berkacamata, outfit Cream & Baby Blue) -->
+                <div class="char-card char-right">
+                    <svg class="chibi-svg tall-girl" viewBox="0 0 120 158" xmlns="http://www.w3.org/2000/svg">
+                        <g class="juana-body">
+                            <g class="juana-hair">
+                                <rect x="33.5" y="42" width="53" height="60" rx="9" fill="#593d4a"/>
+                            </g>
+                            <rect x="54.5" y="64" width="11" height="11" rx="5" fill="#f5d5c6"/>
+                            <circle cx="60" cy="46" r="23.5" fill="#f5d5c6"/>
+                            <path d="M36.5 45 C36.5 25, 83.5 25, 83.5 45 C74 34, 46 34, 36.5 45 Z" fill="#593d4a"/>
+                            <polygon points="75,25 76.6,28.6 80.5,28.6 77.4,31 78.5,35 75,32.6 71.5,35 72.6,31 69.5,28.6 73.4,28.6" fill="#ebd28a"/>
+                            <g class="eyes-juana">
+                                <circle cx="50.5" cy="48" r="3" fill="#47303c"/>
+                                <circle cx="69.5" cy="48" r="3" fill="#47303c"/>
+                                <circle cx="51.5" cy="47" r="1" fill="#ffffff"/>
+                                <circle cx="70.5" cy="47" r="1" fill="#ffffff"/>
+                            </g>
+                            <rect x="42.5" y="42.5" width="15" height="11" rx="4" fill="rgba(255,255,255,0.35)" stroke="#7c9eb8" stroke-width="1.8"/>
+                            <rect x="62.5" y="42.5" width="15" height="11" rx="4" fill="rgba(255,255,255,0.35)" stroke="#7c9eb8" stroke-width="1.8"/>
+                            <line x1="57.5" y1="47.5" x2="62.5" y2="47.5" stroke="#7c9eb8" stroke-width="1.8"/>
+                            <ellipse cx="44" cy="55.5" rx="3.6" ry="1.9" fill="#f2b5c4"/>
+                            <ellipse cx="76" cy="55.5" rx="3.6" ry="1.9" fill="#f2b5c4"/>
+                            <path d="M55.5 57 Q60 61 64.5 57" stroke="#9e536b" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+                            <!-- Outfit Juana: Cream Blouse + Baby Blue Pleated Skirt -->
+                            <path d="M47.5 75 L72.5 75 L74.5 104 L45.5 104 Z" fill="#f8efe6" stroke="#dfd0c0" stroke-width="1"/>
+                            <circle cx="60" cy="84" r="1.8" fill="#7fa6c4"/>
+                            <circle cx="60" cy="93" r="1.8" fill="#7fa6c4"/>
+                            <path d="M45 104 L75 104 L80 128 L40 128 Z" fill="#c7e0f2" stroke="#9ec3de" stroke-width="1"/>
+                            <line x1="52" y1="104" x2="49" y2="128" stroke="#9ec3de" stroke-width="1.2"/>
+                            <line x1="60" y1="104" x2="60" y2="128" stroke="#9ec3de" stroke-width="1.2"/>
+                            <line x1="68" y1="104" x2="71" y2="128" stroke="#9ec3de" stroke-width="1.2"/>
+
+                            <path class="arm-left" d="M47.5 78 L35 95" stroke="#f8efe6" stroke-width="6.5" stroke-linecap="round"/>
+                            <path class="arm-right" d="M72.5 78 L85 97" stroke="#f8efe6" stroke-width="6.5" stroke-linecap="round"/>
+                            <circle cx="34.5" cy="96" r="3.2" fill="#f5d5c6"/>
+                            <circle cx="85.5" cy="98" r="3.2" fill="#f5d5c6"/>
+
+                            <line x1="52" y1="128" x2="50" y2="148" stroke="#f5d5c6" stroke-width="5.5" stroke-linecap="round"/>
+                            <line x1="68" y1="128" x2="70" y2="148" stroke="#f5d5c6" stroke-width="5.5" stroke-linecap="round"/>
+                            <ellipse cx="49" cy="150" rx="6.2" ry="3" fill="#7fa6c4"/>
+                            <ellipse cx="71" cy="150" rx="6.2" ry="3" fill="#7fa6c4"/>
+                        </g>
+                    </svg>
+                    <span class="char-name">Juana</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layar Awal -->
+        <div id="startScreen" class="screen active">
+            <h2>Tantangan Kata Level 1–100!</h2>
+            <p class="desc">
+                Tebak kata dari huruf acak berdasarkan petunjuk! Naik level demi level sampai <strong>Level 100</strong> dengan <strong>50 kata</strong>, bonus <strong>Kombo ✨</strong>, dan gelar yang makin seru.
+            </p>
+
+            <!-- Pilihan Mode Santai vs Tantangan -->
+            <div class="mode-selector">
+                <button type="button" id="modeRelaxBtn" class="mode-btn active">🌿 Mode Santai (Waktu Longgar)</button>
+                <button type="button" id="modeChallengeBtn" class="mode-btn">⚡ Mode Tantangan (Lebih Cepat)</button>
+            </div>
+
+            <div class="rules-grid">
+                <div class="rule-card">💗 <strong>3 Nyawa</strong><br>Salah tebak / waktu habis = -1 nyawa</div>
+                <div class="rule-card">📈 <strong>Level 1–100</strong><br>Tiap 2 kata benar naik 1 level</div>
+                <div class="rule-card">✨ <strong>Streak Kombo</strong><br>Benar beruntun melipatgandakan poin</div>
+            </div>
+            <button id="startBtn" class="primary-btn">Mulai Bermain 🚀</button>
+        </div>
+
+        <!-- Layar Permainan -->
+        <div id="playScreen" class="screen">
+            <div class="level-banner">
+                <div class="level-top">
+                    <span id="levelBadge" class="level-pill">📈 Level 1 / 100</span>
+                    <span id="rankTitle" class="rank-label">Pastel Dreamer</span>
+                </div>
+                <div class="level-progress-track">
+                    <div id="levelProgressBar" class="level-progress-fill"></div>
+                </div>
+                <small id="levelHintText" class="level-subtext">0/2 kata menuju Level 2</small>
+            </div>
+
+            <div class="hud-bar">
+                <div class="hud-item">
+                    <span>Nyawa</span>
+                    <strong id="livesDisplay">💗💗💗</strong>
+                </div>
+                <div class="hud-item">
+                    <span>Kombo</span>
+                    <strong id="streakDisplay">✨ 0x</strong>
+                </div>
+                <div class="hud-item">
+                    <span>Skor</span>
+                    <strong id="scoreDisplay">0</strong>
+                </div>
+            </div>
+
+            <div class="timer-wrapper">
+                <div class="timer-top">
+                    <span>⏱️ Sisa Waktu</span>
+                    <strong id="timerText">30 dtk</strong>
+                </div>
+                <div class="timer-track">
+                    <div id="timerBar" class="timer-fill"></div>
+                </div>
+            </div>
+
+            <div class="clue-box">
+                <span id="categoryBadge" class="cat-badge">Kategori</span>
+                <p id="clueText">Petunjuk kata akan muncul di sini...</p>
+            </div>
+
+            <!-- Kotak Jawaban -->
+            <div id="answerSlots" class="slots-container"></div>
+
+            <!-- Tombol Huruf Acak -->
+            <div id="letterPool" class="pool-container"></div>
+
+            <div class="control-row">
+                <button id="clearBtn" class="secondary-btn">↺ Reset Huruf</button>
+                <button id="hintBtn" class="hint-btn">💡 Bantuan (-15 Poin)</button>
+                <button id="skipBtn" class="danger-btn">Lewati ⏭️</button>
+            </div>
+
+            <p id="feedbackMsg" class="feedback-msg"></p>
+        </div>
+
+        <!-- Layar Game Over -->
+        <div id="gameOverScreen" class="screen">
+            <div class="hero-icon">🎀</div>
+            <h2>Permainan Selesai!</h2>
+            <p class="desc">Terima kasih sudah bermain <strong>WordRush</strong>!</p>
+
+            <div class="final-stats">
+                <div class="stat-box">
+                    <span>Level Tercapai</span>
+                    <strong id="finalLevel">1</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Skor Akhir</span>
+                    <strong id="finalScore">0</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Rekor Terbaik</span>
+                    <strong id="finalHighScore">0</strong>
+                </div>
+            </div>
+
+            <button id="restartBtn" class="primary-btn">Main Lagi 🔄</button>
+        </div>
+
+        <footer class="game-footer">
+            Dikembangkan oleh <strong>Yolanda Suchesi</strong> &amp; <strong>Juana Taruli</strong> • Proyek Web Basic Coding
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
